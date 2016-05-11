@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static from staticfiles %}
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static  'css/main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+
+    <script>
+        var citiesJSON = '{% static "json/cities.json" %}'
+    </script>
+    <script src="{% static 'js/googleMaps.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8j6OZr9rgA1Z86Jsh5PvKKukxyIo_HGA&callback=initMap"
+            async defer></script>
+
+    <style>
+        #map {
+            width: 100%;
+            padding-top: 60%;
+
+        }
+    </style>
+    <title>Income</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Income</h1>
+        <h4>a project under development by Jonathan Brown</h4>
+        <select onchange="locationChanged()" id="selecter"></select>
+        <p id="words"></p>
+    </div>
+</div>
+
+
+<div class="container">
+    <div id="map"></div>
+</div>
+
+</body>
+</html>

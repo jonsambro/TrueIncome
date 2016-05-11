@@ -1,0 +1,29 @@
+{
+  "cities": {
+    "New York": {
+      "Name": "New York",
+      "lat": "40.7055651",
+      "lon": "-74.1180857"
+    },
+    "London": {
+      "Name": "London",
+      "lat": "51.5287336",
+      "lon": "-0.3824596"
+    },
+    "Sydney": {
+      "Name": "Sydney",
+      "lat": "-33.7945089",
+      "lon": "150.3606496"
+    },
+    "Beijing": {
+      "Name": "Beijing",
+      "lat": "39.9385813",
+      "lon": "115.8356714"
+    },
+    "Hamilton":{
+      "Name": "Hamilton",
+      "lat": "43.261469",
+      "lon": "-79.895774"
+    }
+  }
+}
