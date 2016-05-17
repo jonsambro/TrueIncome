@@ -10,6 +10,14 @@ function locationChanged() {
     //map.setZoom(10);
 }
 
+function jobChanged(){
+    var e = document.getElementById('profession_selecter');
+    e = e[e.selectedIndex].value;
+    $.getJSON('markers', {'OCC_ID': e}, function(x){
+        console.log("Response received");
+    })
+}
+
 $(function () {
     console.log(window.location.pathname)
     //jQuery goes here

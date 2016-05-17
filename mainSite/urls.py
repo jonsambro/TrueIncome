@@ -18,6 +18,7 @@ from django.conf import settings
 from . import views,ajax
 
 urlpatterns = [
-    url(r'^cities', ajax.cities),
+    url(r'^cities$', ajax.cities),
+    url(r'^markers$', ajax.markers),
     url(r'^', views.index),
 ]
