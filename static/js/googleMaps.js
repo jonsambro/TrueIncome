@@ -10,12 +10,20 @@ function locationChanged() {
     //map.setZoom(10);
 }
 
-function jobChanged(){
+function jobChanged() {
     var e = document.getElementById('profession_selecter');
     e = e[e.selectedIndex].value;
-    $.getJSON('markers', {'OCC_ID': e}, function(x){
-        console.log("Response received");
+    $.getJSON('markers', {'OCC_ID': e}, function (x) {
+        $.each(x, function (index, value) {
+            console.log(value)
+            var marker = new google.maps.Marker({
+                position: {lat: value.latitude, lng: value.longitude},
+                map: map,
+                title: value.area_name
+            });
+        })
     })
+    console.log("Markers added");
 }
 
 $(function () {

@@ -25,19 +25,26 @@
     </style>
     <title>Income</title>
 
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ static('favicon.ico') }}" type="image/x-icon">
+
 </head>
 <body>
 <div class="container">
-    <div class="jumbotron">
-        <h1>Income</h1>
-        <h4>a project under development by {{ names }}</h4>
-        <select onchange="locationChanged()" id="selecter"></select>
-        <select onchange="jobChanged()" id="profession_selecter">
-            {% for job in jobs %}
-                <option value="{{ job[0] }}">{{ job[1] }}</option>
-            {% endfor %}
-        </select>
-        <p id="words"></p>
+    <div class="jumbotron container-fluid">
+        <image src="{{ static('images/TrueValue.png') }}" class="img-responsive col-md-4"></image>
+        <div class="col-md-8">
+            <h1>Income</h1>
+            <h4>a project under development by {{ names }}</h4>
+            <select onchange="locationChanged()" id="selecter"></select>
+            <select onchange="jobChanged()" id="profession_selecter">
+                {% for job in jobs %}
+                    <option value="{{ job[0] }}">{{ job[1] }}</option>
+                {% endfor %}
+            </select>
+            <p id="words"></p>
+        </div>
+
     </div>
 </div>
 
