@@ -35,8 +35,7 @@
         <image src="{{ static('images/TrueValue.png') }}" class="img-responsive col-md-3"></image>
         <div class="col-md-9">
             <h1>Income</h1>
-            <h4>a project under development by {{ names }}</h4>
-            <select onchange="locationChanged()" id="selecter"></select>
+            <h4>a project under development by <a href="http://www.jonathanbrown.ca">{{ names }}</a></h4>
             <select onchange="jobChanged()" id="profession_selecter">
                 {% for job in jobs %}
                     <option value="{{ job[0] }}">{{ job[1] }}</option>
@@ -51,6 +50,18 @@
 
 <div class="container">
     <div id="map"></div>
+</div>
+<br>
+<br>
+<div class="table-responsive">
+  <table id="resutls_table" class="table">
+      <tr>
+          <td>City Name</td>
+          <td>Adjusted Income</td>
+          <td>Unadjusted Income</td>
+          <td>Cost of Living (100 is national average)</td>
+      </tr>
+  </table>
 </div>
 
 
