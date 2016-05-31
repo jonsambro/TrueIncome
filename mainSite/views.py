@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . import models
 import sqlite3, time
 
 def index(request):

@@ -17,13 +17,20 @@ function jobChanged() {
         $.each(x, function (index, value) {
             console.log(value)
             var marker = new google.maps.Marker({
-                position: {lat: value.latitude, lng: value.longitude},
+                position: {lat: value.lat, lng: value.lng},
                 map: map,
-                title: value.area_name
+                title: value.name
+            });
+            marker.addListener('click', function() {
+                console.log(marker.title)
             });
         })
     })
     console.log("Markers added");
+}
+
+function markerClicked() {
+    
 }
 
 $(function () {
