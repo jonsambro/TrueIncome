@@ -1,5 +1,6 @@
 var map;
 var cities;
+var circles;
 
 function locationChanged() {
     var t = document.getElementById('selecter');
@@ -11,9 +12,10 @@ function locationChanged() {
 }
 
 function jobChanged() {
-    function setColour(value, average) {
-
-    }
+    $.each(circles, function (index,value) {
+        value.setMap(null);
+    })
+    circles = [];
 
     function getColor(value, average) {
         value = (value/average) -0.5
@@ -29,11 +31,7 @@ function jobChanged() {
             average_adjusted_income = average_adjusted_income + value.adjusted_median;
         })
         average_adjusted_income = average_adjusted_income / x.length;
-        console.log(typeof x)
-        console.log(average_adjusted_income);
         $.each(x, function (index, value) {
-            console.log(value);
-
             myColour = getColor(value.adjusted_median, average_adjusted_income)
             var cityCircle = new google.maps.Circle({
                 strokeColor: myColour,
@@ -45,18 +43,9 @@ function jobChanged() {
                 center: {lat: value.lat, lng: value.lng},
                 radius: 50000
             });
-            /*
-             var marker = new google.maps.Marker({
-             position: {lat: value.lat, lng: value.lng},
-             map: map,
-             title: value.name
-             });
-             marker.addListener('click', function () {
-             console.log(marker.title)
-             });*/
+            circles.push(cityCircle)
         })
     })
-    console.log("Markers added");
 }
 
 function markerClicked() {
@@ -64,11 +53,9 @@ function markerClicked() {
 }
 
 $(function () {
-    console.log(window.location.pathname)
     //jQuery goes here
-
     var e = document.getElementById('selecter');
-    if (e.length == 0) {
+    if (e != null && e.length == 0) {
         $.getJSON('cities', function (x) {
             cities = x.cities;
             $.each(cities, function (index, value) {
@@ -78,8 +65,6 @@ $(function () {
             })
         })
     }
-    console.log("Hello!");
-
 });
 
 function initMap() {
