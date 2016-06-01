@@ -11,26 +11,56 @@ function locationChanged() {
 }
 
 function jobChanged() {
+    function setColour(value, average) {
+
+    }
+
+    function getColor(value, average) {
+        value = (value/average) -0.5
+        var hue = ((value) * 120).toString(10);
+        return ["hsl(", hue, ",100%,50%)"].join("");
+    }
+
+    var average_adjusted_income = 0;
     var e = document.getElementById('profession_selecter');
     e = e[e.selectedIndex].value;
     $.getJSON('markers', {'OCC_ID': e}, function (x) {
         $.each(x, function (index, value) {
-            console.log(value)
-            var marker = new google.maps.Marker({
-                position: {lat: value.lat, lng: value.lng},
+            average_adjusted_income = average_adjusted_income + value.adjusted_median;
+        })
+        average_adjusted_income = average_adjusted_income / x.length;
+        console.log(typeof x)
+        console.log(average_adjusted_income);
+        $.each(x, function (index, value) {
+            console.log(value);
+
+            myColour = getColor(value.adjusted_median, average_adjusted_income)
+            var cityCircle = new google.maps.Circle({
+                strokeColor: myColour,
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: myColour,
+                fillOpacity: 0.35,
                 map: map,
-                title: value.name
+                center: {lat: value.lat, lng: value.lng},
+                radius: 50000
             });
-            marker.addListener('click', function() {
-                console.log(marker.title)
-            });
+            /*
+             var marker = new google.maps.Marker({
+             position: {lat: value.lat, lng: value.lng},
+             map: map,
+             title: value.name
+             });
+             marker.addListener('click', function () {
+             console.log(marker.title)
+             });*/
         })
     })
     console.log("Markers added");
 }
 
 function markerClicked() {
-    
+
 }
 
 $(function () {

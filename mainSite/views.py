@@ -11,7 +11,7 @@ def index(request):
     print(end-start)
     return HttpResponse(render(request, 'mainSite/index.html',
         context={
-            'names':"Jonathan Brown and Graeme Crawley",
+            'names':"Jonathan Brown",
             'jobs' : area_locations
         }))
 
