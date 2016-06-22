@@ -1,7 +1,6 @@
 import sqlite3
 import requests
 
-
 connection = sqlite3.connect('incomeDatabase.db')
 cursor = connection.cursor()
 cursor.execute('SELECT name, state FROM mainSite_city')

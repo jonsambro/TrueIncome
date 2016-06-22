@@ -17,6 +17,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8j6OZr9rgA1Z86Jsh5PvKKukxyIo_HGA&callback=initMap"
             async defer></script>
 
+    <script src="{{ static('js/sorttable.js') }}"></script>
+
     <style>
         #map {
             width: 100%;
@@ -32,8 +34,10 @@
 <body>
 <div class="container">
     <div class="jumbotron container-fluid">
-        <image src="{{ static('images/TrueValue.png') }}" class="img-responsive col-md-3"></image>
-        <div class="col-md-9">
+        <div class="center-block">
+            <image src="{{ static('images/TrueValue.png') }}" class="img-responsive col-sm-3 col-xs-6"></image>
+        </div>
+        <div class="col-md-9 col-xs-12">
             <h1>Income</h1>
             <h4>a project under development by <a href="http://www.jonathanbrown.ca">{{ names }}</a></h4>
             <select onchange="jobChanged()" id="profession_selecter">
@@ -50,20 +54,24 @@
 
 <div class="container">
     <div id="map"></div>
-</div>
-<br>
-<br>
-<div class="table-responsive">
-  <table id="resutls_table" class="table">
-      <tr>
-          <td>City Name</td>
-          <td>Adjusted Income</td>
-          <td>Unadjusted Income</td>
-          <td>Cost of Living (100 is national average)</td>
-      </tr>
-  </table>
-</div>
 
+    <br>
+    <br>
+
+    <table id="results_table" class="table sortable">
+        <thead>
+        <tr>
+            <th>State</th>
+            <th>City Name</th>
+            <th class="sorttable_numeric">Adjusted Income</th>
+            <th class="sorttable_numeric">Unadjusted Income</th>
+            <th class="sorttable_numeric">Cost of Living (100 is national average)</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
 <br>
 <br>

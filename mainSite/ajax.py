@@ -15,8 +15,9 @@ def get_markers(id):
     salaries = list(models.Salary.objects
                     .filter(occ_code=id, city__lat__isnull=False, a_median__isnull=False)
                     .exclude(a_median=0)
-                    .values('city__name','city__lat','city__lng','city__costOfLiving','a_median'))
+                    .values('city__name','city__lat','city__lng','city__costOfLiving','a_median', 'city__state'))
     for x in salaries:
+        x['state'] =  x.pop('city__state')
         x['name'] = x.pop('city__name')
         x['lat'] = x.pop('city__lat')
         x['lng'] = x.pop('city__lng')

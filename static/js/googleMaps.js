@@ -12,21 +12,28 @@ function locationChanged() {
 }
 
 function jobChanged() {
-    $.each(circles, function (index,value) {
+    $.each(circles, function (index, value) {
         value.setMap(null);
     })
     circles = [];
 
     function getColor(value, average) {
-        value = (value/average) -0.5
+        value = (value / average) - 0.5
         var hue = ((value) * 120).toString(10);
         return ["hsl(", hue, ",100%,50%)"].join("");
     }
 
+
     var average_adjusted_income = 0;
     var e = document.getElementById('profession_selecter');
     e = e[e.selectedIndex].value;
+
+
+
     $.getJSON('markers', {'OCC_ID': e}, function (x) {
+        $('#results_table tbody > tr').remove();
+        var $results_table = $('#results_table').find('tbody');
+
         $.each(x, function (index, value) {
             average_adjusted_income = average_adjusted_income + value.adjusted_median;
         })
@@ -44,6 +51,17 @@ function jobChanged() {
                 radius: 50000
             });
             circles.push(cityCircle)
+
+
+            var row = $('<tr>');
+
+            row.append($('<td>' + value['state'] + '</td>'));
+            row.append($('<td>' + value['name'] + '</td>'));
+            row.append($('<td>' + Math.round(value['adjusted_median']) + '</td>'));
+            row.append($('<td>' + value['a_median'] + '</td>'));
+            row.append($('<td>' + value['costOfLiving'] + '</td>'));
+
+            $results_table.append(row);
         })
     })
 }
